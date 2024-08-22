@@ -1,8 +1,6 @@
-# Manjaro software installation guide
+# Linux Guides on Software Installation, HowTo's
 
-I shall write a short tutorial on it soon.
-
-My own guide to install softwares on Manjaro Linux
+Short guides on various useful software installation, command-line utlities usage and HowTo's  
 
 ### Switch to Fastest Mirror
 
