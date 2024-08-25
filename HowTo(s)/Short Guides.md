@@ -23,7 +23,7 @@ Here, the command essentially tells the app to convert the file called `document
 ## Mount an ISO in Linux CLI
 
 ```sh
-(root) mount -o loop /path/to/iso /mn
+(root) mount -o loop /path/to/iso /mnt
 ```
 
 ## Setting locale to English in Linux
