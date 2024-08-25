@@ -21,12 +21,6 @@ Failed to synchronise database
 
 Do a `sudo pacman -Syy` to force every repository database sync/refresh.
 
-## Mount an ISO in Linux CLI
-
-```sh
-(root) mount -o loop /path/to/iso /mn
-```
-
 ## LibreOffice Theme Fix in KDE
 
 If Toolbar icons does not adjust automatically according to dark theme.
