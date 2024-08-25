@@ -20,6 +20,12 @@ Here, the command essentially tells the app to convert the file called `document
 
 `/dev/sda` is the target storage disk.
 
+## Mount an ISO in Linux CLI
+
+```sh
+(root) mount -o loop /path/to/iso /mn
+```
+
 ## Setting locale to English in Linux
 
 Open `/etc/locale.conf` with sudo nano. Then set `LANG` value to `en_US.UTF-8`.
