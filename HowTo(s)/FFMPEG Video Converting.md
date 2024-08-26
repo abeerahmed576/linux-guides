@@ -1,4 +1,4 @@
-### Converting:
+### Converting
 
 ```sh
 ffmpeg -i <input> -c:v copy -c:a copy output.<format>
@@ -11,13 +11,13 @@ ffmpeg -i <input> -c copy output.<format>
 * `-c` stands for 'Codec'.
 * `-c:a` means audio codec and `-c:v` means video codec.
 
-### Resizing:
+### Resizing
 
 ```sh
 ffmpeg -i <input> -vf "scale= <w> : <h>" output.<format>
 ```
 
-### Compressing:
+### Compressing
 
 ```sh
 ffmpeg -i <input> -c:v libx265 -crf 28 -c:a copy output.<format>
@@ -25,7 +25,7 @@ ffmpeg -i <input> -c:v libx265 -crf 28 -c:a copy output.<format>
 
 The higher the `-crf` value, the higher the compression resulting in lower size. Default value is 28 for `libx265`.
 
-### Remove an audio or subtitle:
+### Remove an audio or subtitle
 
 ```sh
 ffmpeg -i <input> -map 0 -map -0:a:2 -c copy output.<format>
@@ -46,13 +46,13 @@ ffmpeg -i <input> -map 0 -map -0:a:2 -c copy output.<format>
 > 
 >   For the second syntax, if we consider the list of all streams which consists of one video and two audio streams, then the video stream holds the index of 0 and the first audio stream or the target audio stream has the index of 1. Whereas specifying audio stream with 'a' in the first syntax changes the index of the target audio stream to 0.
 
-### Adding subtitle to an mp4:
+### Adding subtitle to an mp4
 
 ```sh
 ffmpeg -i <video file> -i <subtitle file> -c:v copy -c:a copy -c:s mov_text output.mp4
 ```
 
-### Extracting Subtitle from a video:
+### Extracting Subtitle from a video
 
 ```sh
 ffmpeg -i <input> -map 0:s:0 <output>.srt
@@ -60,7 +60,48 @@ ffmpeg -i <input> -map 0:s:0 <output>.srt
 
 `-map 0:s:0` selects the first subtitle stream of the input video.
 
-### Batch Conversion:
+### Adding timestamps to a video
+
+Timestamps have to be set as metadata of the video. An example metadata file format is as following:
+
+```ini
+;FFMETADATA1
+title=Practical TypeScript \- FreeCodeCamp
+
+[STREAM]
+title=Practical TypeScript \- FreeCodeCamp
+
+[CHAPTER]
+TIMEBASE=1/1000
+# Starts from beginning
+START=0000
+# Ends at 00:55:40
+END=3340000
+title=Intro, Type Annotations, Arrays
+
+[CHAPTER]
+TIMEBASE=1/1000
+# Starts at 00:55:41
+START=3341000
+# Ends at 01:54:58
+END=6897000
+title=Objects and Functions
+
+[CHAPTER]
+TIMEBASE=1/1000
+# Starts at 01:54:59
+START=6898000
+# Ends at 03:02:52
+END=10973000
+```
+
+Create a `.txt/.ini` (*metadata.txt/.ini*) file with desired timestamps along with other metadata values [(See this for more metadata options)](https://ffmpeg.org/ffmpeg-formats.html#toc-Metadata-1) and run the following:
+
+```sh
+~ ffmpeg -i INPUT -i METADATAFILE -map_metadata 1 -c copy OUTPUT
+```
+
+### Batch Conversion
 
 1. Open Terminal and create a shell file:
 
