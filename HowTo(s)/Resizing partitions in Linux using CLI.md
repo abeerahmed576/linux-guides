@@ -62,15 +62,17 @@ Resizing partitions safely mainly involves two steps: resizing the filesystem an
     ```
     - `new_size` can be specified in `G` (GiB), `M` (MiB) etc. Obviously, it has to be smaller than the old size.
 
+    <br/>
+    
     > Note: Before moving forward to resizing the partition, it's a good idea to shrink the filesystem a bit more than our intended size, as specifying a "wrong" end (not the absolute minimum required end for the filesystem) when resizing the partition in `parted` can lead to data loss in the filesystem. So, to be on the safer side, if our intended size for the filesystem is 100G, we want to resize it to 99G for now, then move on to resizing the partition to be make it 100G, and then resize the filesystem again to occupy the remaining space in the partition.
 
-2. Enter `parted` (GNU Parted) interactive mode for the disk device:
+1. Enter `parted` (GNU Parted) interactive mode for the disk device:
 
     ```sh
     (root) parted /dev/sdX
     ```
 
-3. Now, use the resizepart command to set the new end for the partition.
+2. Now, use the resizepart command to set the new end for the partition.
     ```sh
     (parted) resizepart <partition_number> <new_end>
     ```
@@ -91,7 +93,7 @@ Resizing partitions safely mainly involves two steps: resizing the filesystem an
         2048s + 209175200s = 209177248s
         ```
 
-4. If we've shrinked the filesystem a bit more than intended in step 2, we should now run the following:
+3. If we've shrinked the filesystem a bit more than intended in step 2, we should now run the following:
 
     ```sh
     (root) resize2fs /dev/sdXY
