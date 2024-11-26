@@ -14,7 +14,7 @@ ffmpeg -i <input> -c copy output.<format>
 ### Resizing
 
 ```sh
-ffmpeg -i <input> -vf "scale= <w> : <h>" output.<format>
+ffmpeg -i <input> -vf "scale=<w>:<h>" output.<format>
 ```
 
 ### Compressing
