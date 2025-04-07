@@ -1,6 +1,6 @@
 > ***This guide is for Ext2/3/4 & Btrfs filesystems only***
 
-Resizing partitions safely mainly involves two steps: resizing the filesystem and resizing the partition. Growing partition requires increasing the partition size first and then growing the filesystem whereas in the case of shrinking partition, it's the exact opposite order.
+Resizing partitions safely mainly involves two steps: resizing the filesystem and resizing the partition. Growing partition requires increasing the partition size first and then growing the filesystem and in the case of shrinking partition, it's the exact opposite order.
 
 ### Growing
 
@@ -30,7 +30,7 @@ Resizing partitions safely mainly involves two steps: resizing the filesystem an
     (root) resize2fs /dev/sdXY <new_size>
     ```
 
-    For Btrfs:
+    For Btrfs: (needed to be mounted first with option `subvol=/`)
 
     ```sh
     (root) btrfs filesystem resize <new_size>/max <path_to_mountpoint>/
@@ -55,12 +55,14 @@ Resizing partitions safely mainly involves two steps: resizing the filesystem an
     ```sh
     (root) resize2fs /dev/sdXY <new_size>
     ```
-    For Btrfs:
+    For Btrfs: (needed to be mounted first with option `subvol=/`)
 
     ```sh
     (root) btrfs filesystem resize <new_size>/max <path_to_mountpoint>/
     ```
     - `new_size` can be specified in `G` (GiB), `M` (MiB) etc. Obviously, it has to be smaller than the old size.
+
+ 	Then unmount.
 
     <br/>
     
@@ -98,7 +100,7 @@ Resizing partitions safely mainly involves two steps: resizing the filesystem an
     ```sh
     (root) resize2fs /dev/sdXY
     ```
-    For Btrfs:
+    For Btrfs: (needed to be mounted first with option `subvol=/`)
 
     ```sh
     (root) btrfs filesystem resize max <path_to_mountpoint>/
