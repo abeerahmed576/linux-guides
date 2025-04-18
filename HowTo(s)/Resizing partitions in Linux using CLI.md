@@ -92,8 +92,9 @@ Resizing partitions safely mainly involves two steps: resizing the filesystem an
         Example: If the partition starts at `2048s` and the `new_size_in_sectors` is 209175200s (100 GiB), then the `new_end` is:
 
         ```
-        2048s + 209175200s = 209177248s
+        2048s + 209175200s - 1s = 209177247s
         ```
+        - `- 1s` is for proper partition alignment. If not done, partitioning tools generally automatically creates a 2048 Byte gap betweeen partitions for better disk performance.
 
 3. If we've shrinked the filesystem a bit more than intended in step 2, we should now run the following:
 
